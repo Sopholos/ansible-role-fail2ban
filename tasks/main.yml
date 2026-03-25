@@ -1,0 +1,8 @@
+---
+- name: Install Fail2ban
+  import_tasks: install.yml
+  tags: [ install ]
+
+- name: Configure mssql
+  import_tasks: mssql.yml
+  tags: [ mssql ]

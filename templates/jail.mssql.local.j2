@@ -1,0 +1,10 @@
+[mssql]
+enabled = {{ fail2ban_mssql_enabled | lower }}
+port = {{ fail2ban_mssql_port }}
+filter = {{ fail2ban_mssql_filter_name }}
+logpath = {{ fail2ban_mssql_log_path }}
+maxretry = {{ fail2ban_mssql_maxretry }}
+findtime = {{ fail2ban_mssql_findtime }}
+bantime = {{ fail2ban_mssql_bantime }}
+ignoreip = {{ fail2ban_mssql_ignoreip }}
+backend = {{ fail2ban_mssql_backend }}

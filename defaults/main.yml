@@ -1,0 +1,20 @@
+---
+# Общие настройки Fail2ban для MSSQL
+fail2ban_mssql_enabled: true
+fail2ban_mssql_port: 1433
+fail2ban_mssql_log_path: "/var/opt/mssql/log/errorlog"
+
+# Параметры блокировки
+fail2ban_mssql_maxretry: 3
+fail2ban_mssql_findtime: 600
+fail2ban_mssql_bantime: 3600
+
+# Белый список IP (адреса, которые никогда не будут забанены)
+fail2ban_mssql_ignoreip: "127.0.0.1/8 ::1"
+
+# Технические параметры
+fail2ban_mssql_backend: "auto"
+fail2ban_mssql_filter_name: "mssql-auth"
+
+# Исправление для Python 3.12 (Ubuntu 24.04)
+fail2ban_mssql_install_pip_fix: true
