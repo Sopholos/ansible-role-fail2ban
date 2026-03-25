@@ -1,12 +1,12 @@
 ---
-- name: Install Fail2ban
+- name: Install fail2ban
   apt:
     name: fail2ban
     state: present
     update_cache: yes
 
-- name: Install pyasynchat fix for Ubuntu 24.04
-  shell: pip install pyasynchat --break-system-packages
-  when: fail2ban_mssql_install_pip_fix
-  register: pip_result
-  changed_when: "'already satisfied' not in pip_result.stdout"
+# - name: Install pyasynchat fix for Ubuntu 24.04
+#   shell: pip install pyasynchat --break-system-packages
+#   when: fail2ban_mssql_install_pip_fix
+#   register: pip_result
+#   changed_when: "'already satisfied' not in pip_result.stdout"

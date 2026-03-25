@@ -1,0 +1,9 @@
+# Fail2Ban filter for failed MSSQL Server authentication attempts
+
+[Definition]
+
+failregex = ^\s*Logon\s+Login failed for user '<F-USER>(?:[^']*|.*)</F-USER>'\. [^'\[]+\[CLIENT: <ADDR>\]$
+            Login failed for user '.*'\. Reason: Password did not match that for the login provided\. \[CLIENT: <HOST>\]
+            Login failed for user '.*'\. Reason: Failed to open the explicitly specified database '.*'\. \[CLIENT: <HOST>\]
+
+ignoreregex =

@@ -8,3 +8,5 @@ findtime = {{ fail2ban_mssql_findtime }}
 bantime = {{ fail2ban_mssql_bantime }}
 ignoreip = {{ fail2ban_mssql_ignoreip }}
 backend = {{ fail2ban_mssql_backend }}
+banaction = iptables-ipset-proto6
+chain = DOCKER-USER

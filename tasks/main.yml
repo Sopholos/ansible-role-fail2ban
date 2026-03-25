@@ -1,5 +1,5 @@
 ---
-- name: Install Fail2ban
+- name: Install fail2ban
   import_tasks: install.yml
   tags: [ install ]
 
