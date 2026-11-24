@@ -1,4 +1,16 @@
 ---
+# ASN для автоматического получения IPv4-сетей
+fail2ban_ignoreip_asns:
+  - AS12389
+  # - AS3216
+  # - AS20485
+
+# API получения CIDR по ASN
+fail2ban_asn_api_url: "https://asn.ipinfo.app/api/text/list"
+
+# Автоматически полученные сети
+fail2ban_asn_networks: ""
+
 # Общие настройки Fail2ban для MSSQL
 fail2ban_mssql_enabled: true
 fail2ban_mssql_port: 1433
@@ -10,7 +22,7 @@ fail2ban_mssql_findtime: 600
 fail2ban_mssql_bantime: 3600
 
 # Белый список IP (адреса, которые никогда не будут забанены)
-fail2ban_mssql_ignoreip: "127.0.0.1/8 ::1"
+fail2ban_mssql_ignoreip: "127.0.0.1/8 ::1 {{ fail2ban_asn_networks }}"
 
 # Технические параметры
 fail2ban_mssql_backend: "auto"

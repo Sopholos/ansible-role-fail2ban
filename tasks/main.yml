@@ -3,6 +3,13 @@
   import_tasks: install.yml
   tags: [ install ]
 
+- name: Get networks from ASN
+  import_tasks: get-asn-networks.yml
+  when:
+    - fail2ban_ignoreip_asns is defined
+    - fail2ban_ignoreip_asns | length > 0
+  tags: always
+
 - name: Configure mssql
   import_tasks: mssql.yml
   tags: [ mssql ]

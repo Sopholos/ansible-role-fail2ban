@@ -1,0 +1,37 @@
+
+---
+- name: Get IPv4 networks for configured ASNs
+  ansible.builtin.uri:
+    url: "{{ fail2ban_asn_api_url }}/{{ item }}"
+    method: GET
+    return_content: true
+    status_code: 200
+    timeout: 30
+  loop: "{{ fail2ban_ignoreip_asns }}"
+  loop_control:
+    label: "{{ item }}"
+  register: fail2ban_asn_api_results
+  delegate_to: localhost
+  run_once: true
+
+- name: Build aggregated ASN networks list
+  ansible.builtin.set_fact:
+    fail2ban_asn_networks: >-
+      {{
+        fail2ban_asn_api_results.results
+        | map(attribute='content')
+        | map('split')
+        | flatten
+        | select('match', '^[0-9.]+/[0-9]+$')
+        | unique
+        | list
+        | join(' ')
+      }}
+  run_once: true
+
+- name: Validate ASN networks
+  ansible.builtin.assert:
+    that:
+      - fail2ban_asn_networks | length > 0
+    fail_msg: "Failed to retrieve IPv4 networks for configured ASNs"
+  run_once: true
